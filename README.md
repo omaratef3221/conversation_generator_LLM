@@ -1,1 +1,1 @@
-# gpt2_text_generation
+# Conversation Generator
