@@ -7,16 +7,18 @@ from get_model_tokenizer import get_model_tokenizer
 import time
 
 
+
+
 ## Hyper Parameters and other parameters
 EPOCHS = 25
 PRINT_INFO = True
-LR = 1e-3
-BATCH_SIZE = 4
+LR = 1e-4
+BATCH_SIZE = 16
 LORA_RANK = 32
 #########
 
 original_model, tokenizer = get_model_tokenizer()
-original_model.to("mps")
+original_model.to("cuda")
 
 # Get the dataset
 training_data = get_dataset(print_info=PRINT_INFO)
@@ -47,18 +49,17 @@ if PRINT_INFO:
     print(print_number_of_trainable_model_parameters(peft_model))
 
 
-training_output_dir = f'./Nvidia-chatbot-training-{str(int(time.time()))}'
+training_output_dir = f'./Nvidia-chatbot-training'
 
 peft_training_args = TrainingArguments(
     output_dir=training_output_dir,
+    overwrite_output_dir = True,
     auto_find_batch_size=True,
     learning_rate=LR, 
     num_train_epochs=EPOCHS,
-    per_device_train_batch_size=BATCH_SIZE,
     logging_steps=1,
     logging_strategy = 'epoch',
-    max_steps=-1, 
-    use_mps_device= True,
+    max_steps=-1,
 )
 
 peft_trainer = Trainer(
@@ -78,3 +79,5 @@ if PRINT_INFO:
     print("="*30)
     print("Training Done and Model saved at: ", peft_model_path)
     print("="*30)
+
+peft_trainer.push_to_hub("Dialouge_generator")
