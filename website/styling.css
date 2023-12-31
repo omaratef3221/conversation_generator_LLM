@@ -1,0 +1,39 @@
+.title1{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+}
+.title2{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.main_box{
+    display: grid;
+    padding: 5px;
+    border: 5px solid black;
+    height: 350px;
+    background-color: rgba(0, 138, 138, 0.4);
+}
+.input_text{
+    border: 1px solid black;
+    width: 500px;
+    height: 60px;
+}
+.input_text_p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.generated_conversation{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    border: 1px solid black;
+    width: 500px;
+    height: 60px;
+}
+.project_button{
+    text-align: center;
+    margin: 10px;
+    width: 70%;
+    height: 18%; 
+}

@@ -5,18 +5,18 @@ import torch
 from dataset import get_dataset
 from get_model_tokenizer import get_model_tokenizer
 import time
-
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 ## Hyper Parameters and other parameters
 EPOCHS = 25
 PRINT_INFO = True
-LR = 1e-3
-BATCH_SIZE = 4
-LORA_RANK = 32
+LR = 1e-4
+BATCH_SIZE = 8
 #########
 
-original_model, tokenizer = get_model_tokenizer()
-original_model.to("mps")
+model, tokenizer = get_model_tokenizer(model = 'bloom')
+model.to("mps")
 
 # Get the dataset
 training_data = get_dataset(print_info=PRINT_INFO)
@@ -31,50 +31,46 @@ def print_number_of_trainable_model_parameters(model):
     return f"trainable model parameters: {trainable_model_params}\nall model parameters: {all_model_params}\npercentage of trainable model parameters: {100 * trainable_model_params / all_model_params:.2f}%"
 
 
-lora_config = LoraConfig(
-    r=LORA_RANK, # Rank
-    lora_alpha=8,
-    target_modules=["q", "v"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type=TaskType.SEQ_2_SEQ_LM # FLAN-T5
-)
-
-peft_model = get_peft_model(original_model, lora_config)
 
 if PRINT_INFO:
     print("="*30)
-    print(print_number_of_trainable_model_parameters(peft_model))
+    print(print_number_of_trainable_model_parameters(model))
 
 
-training_output_dir = f'./Nvidia-chatbot-training-{str(int(time.time()))}'
+training_output_dir = f'./bloom560m_dialogue_generator-{str(int(time.time()))}'
 
-peft_training_args = TrainingArguments(
+
+
+training_args = TrainingArguments(
     output_dir=training_output_dir,
+    overwrite_output_dir=True,
     auto_find_batch_size=True,
     learning_rate=LR, 
-    num_train_epochs=EPOCHS,
+    num_train_epochs=10,
     per_device_train_batch_size=BATCH_SIZE,
     logging_steps=1,
     logging_strategy = 'epoch',
     max_steps=-1, 
     use_mps_device= True,
+    push_to_hub = True,
+    hub_model_id = 'bloom-560m-dialogue-generator',
+    hub_token = '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',
 )
 
-peft_trainer = Trainer(
-    model=peft_model,
-    args=peft_training_args,
+trainer = Trainer(
+    model=model,
+    args=training_args,
     train_dataset=training_data,
 )
 
-peft_trainer.train()
+trainer.train()
 
-peft_model_path="./peft-Nvidia-chatbot-checkpoint-local"
+model_path="./bloom560m_dialogue_generator"
 
-peft_trainer.model.save_pretrained(peft_model_path)
-tokenizer.save_pretrained(peft_model_path)
+trainer.model.save_pretrained(model_path)
+tokenizer.save_pretrained(model_path)
 
 if PRINT_INFO:
     print("="*30)
-    print("Training Done and Model saved at: ", peft_model_path)
+    print("Training Done and Model saved at: ", model_path)
     print("="*30)
