@@ -2,7 +2,9 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, GenerationConfig
 import torch
 from peft import PeftModel, PeftConfig
 
-peft_model_path="./peft-Nvidia-chatbot-checkpoint-local"
+
+
+peft_model_path="./dialouge_generator"
 
 model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-base", torch_dtype=torch.float32)
 tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-base")
@@ -13,6 +15,7 @@ peft_model = PeftModel.from_pretrained(model,
                                        is_trainable=False)
 
 
+peft_model.push_to_hub("Dialouge_generator")
 
 original_model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-base", 
                                                        torch_dtype=torch.float32,)
@@ -31,8 +34,8 @@ def generate_conversation(text, model):
 
     ## Fine tuned model
     outputs_ft = peft_model.generate(input_ids=tokenized_statement["input_ids"], 
-                                  generation_config=GenerationConfig(max_new_tokens=200, num_beams=1),
-                                  top_k = 30, temperature = 1
+                                  generation_config=GenerationConfig(max_new_tokens=200, num_beams=3),
+                                  top_k = 10, temperature = 1, do_sample = True
                                     )
     
    
@@ -47,7 +50,6 @@ def generate_conversation(text, model):
     
     # print("\nAnswers: ")
     # print("\nOriginal Model:", tokenizer.decode(op[0], skip_special_tokens=True).replace(".", "\n"))
-
     # print("\nT5 Fine-Tuned: ", final_output_ft.replace(".", "\n"))
     # print("="*30)
     return final_output_ft.replace(".", "\n")

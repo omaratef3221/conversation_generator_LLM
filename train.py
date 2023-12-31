@@ -8,15 +8,22 @@ import time
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+
+
 ## Hyper Parameters and other parameters
 EPOCHS = 25
 PRINT_INFO = True
 LR = 1e-4
+
 BATCH_SIZE = 8
 #########
 
 model, tokenizer = get_model_tokenizer(model = 'bloom')
 model.to("mps")
+=======
+BATCH_SIZE = 16
+LORA_RANK = 32
+#########
 
 # Get the dataset
 training_data = get_dataset(print_info=PRINT_INFO)
@@ -38,6 +45,7 @@ if PRINT_INFO:
 
 
 training_output_dir = f'./bloom560m_dialogue_generator-{str(int(time.time()))}'
+
 
 
 
@@ -74,3 +82,5 @@ if PRINT_INFO:
     print("="*30)
     print("Training Done and Model saved at: ", model_path)
     print("="*30)
+
+trainer.push_to_hub("Dialouge_generator")
