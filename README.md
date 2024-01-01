@@ -10,7 +10,7 @@ This tool supports and has been tested with the following original models:
 - 🌐 [microsoft/phi-2](https://huggingface.co/microsoft/phi-2) - Microsoft's PHI-2 model, renowned for its language understanding and generation capabilities.
 
 ### Fine-Tuned Models 🎯
-Check out the fine-tuned versions for dialogue generation:
+Check out the fine-tuned versions for dialogue generation and try them out on 🤗:
 - 🌐 [Omaratef3221/phi2-dialogue-generator](https://huggingface.co/Omaratef3221/phi2-dialogue-generator)
 - 🌐 [Omaratef3221/flan-t5-base-dialogue-generator](https://huggingface.co/Omaratef3221/flan-t5-base-dialogue-generator)
 
