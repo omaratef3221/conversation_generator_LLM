@@ -6,17 +6,19 @@ from dataset import get_dataset
 from get_model_tokenizer import get_model_tokenizer
 import time
 import os
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+from huggingface_hub import login
+
 
 ## Hyper Parameters and other parameters
 EPOCHS = 25
 PRINT_INFO = True
 LR = 1e-4
-BATCH_SIZE = 8
+BATCH_SIZE = 4
 #########
 
-model, tokenizer = get_model_tokenizer(model = 'bloom')
-model.to("mps")
+model_name = 'phi2'
+model, tokenizer = get_model_tokenizer(model = model_name)
+model.to("cuda")
 
 # Get the dataset
 training_data = get_dataset(print_info=PRINT_INFO)
@@ -30,14 +32,12 @@ def print_number_of_trainable_model_parameters(model):
             trainable_model_params += param.numel()
     return f"trainable model parameters: {trainable_model_params}\nall model parameters: {all_model_params}\npercentage of trainable model parameters: {100 * trainable_model_params / all_model_params:.2f}%"
 
-
-
 if PRINT_INFO:
     print("="*30)
     print(print_number_of_trainable_model_parameters(model))
 
 
-training_output_dir = f'./bloom560m_dialogue_generator-{str(int(time.time()))}'
+training_output_dir = f'./{model_name}_dialogue_generator-{str(int(time.time()))}'
 
 
 
@@ -46,15 +46,16 @@ training_args = TrainingArguments(
     overwrite_output_dir=True,
     auto_find_batch_size=True,
     learning_rate=LR, 
-    num_train_epochs=10,
+    num_train_epochs=EPOCHS,
     per_device_train_batch_size=BATCH_SIZE,
     logging_steps=1,
     logging_strategy = 'epoch',
     max_steps=-1, 
-    use_mps_device= True,
+    fp16=True,
+
     push_to_hub = True,
-    hub_model_id = 'bloom-560m-dialogue-generator',
-    hub_token = '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',
+    hub_model_id = f'{model_name}-dialogue-generator',
+    hub_token = '<YOUR TOKEN>',
 )
 
 trainer = Trainer(
@@ -65,10 +66,16 @@ trainer = Trainer(
 
 trainer.train()
 
-model_path="./bloom560m_dialogue_generator"
+model_path=f"./{model_name}_dialogue_generator"
 
 trainer.model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path)
+
+
+login('<YOUR TOKEN>')
+repo_name = f'{model_name}-dialogue-generator'
+
+tokenizer.push_to_hub()
 
 if PRINT_INFO:
     print("="*30)

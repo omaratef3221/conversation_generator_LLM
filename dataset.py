@@ -1,7 +1,11 @@
 import pandas as pd
 from datasets import Dataset
 from get_model_tokenizer import get_model_tokenizer
-data_df = pd.read_csv("archive/CSV/train.csv")[["dialogue", "summary"]]
+train_data_df = pd.read_csv("train.csv")[["dialogue", "summary"]]
+validation_data_df = pd.read_csv("validation.csv")[["dialogue", "summary"]]
+test_data_df = pd.read_csv("test.csv")[["dialogue", "summary"]]
+
+data_df = pd.concat([train_data_df, validation_data_df, test_data_df],axis=0)
 
 data = Dataset.from_pandas(data_df)
 
