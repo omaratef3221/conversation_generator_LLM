@@ -27,6 +27,11 @@ The training utilizes the [Kaggle Dialogue Dataset](https://www.kaggle.com/datas
 ## Contributing
 Contributions to improve the Conversation Generator are welcome. Feel free to fork the repository, make changes, and submit a pull request.
 
----
-
 For any issues or suggestions, please open an issue in this repository. Your feedback is invaluable in enhancing this tool.
+## Contact
+
+For queries, feel free to contact the maintainer at 
+
+📧 Email: omaratef3221@gmail.com
+
+🐦 Twitter: @OmarAtef3221
