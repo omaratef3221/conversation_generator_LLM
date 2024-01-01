@@ -1,37 +1,35 @@
 # Conversation Generator
 
 ## Overview
-The Conversation Generator is a specialized tool designed to fine-tune large language models (LLMs) for generating realistic dialogues or conversations between two individuals. It is capable of working with various cutting-edge models, making it highly versatile and effective for a wide range of conversational scenarios.
+The Conversation Generator is a specialized tool designed for generating realistic dialogues or conversations between two individuals. It finely tunes large language models (LLMs) to achieve this, working with both original and custom-tuned versions of various cutting-edge models.
 
 ## Supported Models
-This tool has been tested and is compatible with the following models:
-- [google/flan-t5-base](https://huggingface.co/google/flan-t5-base): An advanced T5 model by Google, known for its effectiveness in understanding and generating human-like text.
-- [bigscience/bloom-560m](https://huggingface.co/bigscience/bloom-560m): A robust model from BigScience, offering a balance between size and performance.
-- [microsoft/phi-2](https://huggingface.co/microsoft/phi-2): Microsoft's PHI-2 model, renowned for its language understanding and generation capabilities.
+This tool supports and has been tested with the following original models:
+- [google/flan-t5-base](https://huggingface.co/google/flan-t5-base)
+- [bigscience/bloom-560m](https://huggingface.co/bigscience/bloom-560m)
+- [microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
+
+Additionally, you can find the fine-tuned versions of these models, created specifically for dialogue generation, at these Hugging Face links:
+- [Omaratef3221/phi2-dialogue-generator](https://huggingface.co/Omaratef3221/phi2-dialogue-generator)
+- [Omaratef3221/flan-t5-base-dialogue-generator](https://huggingface.co/Omaratef3221/flan-t5-base-dialogue-generator)
 
 ## Installation Requirements
-To ensure smooth operation of the Conversation Generator, please install the following dependencies:
-- `transformers==4.36.2`: Provides the backbone for working with the aforementioned LLMs.
-- `datasets==2.10.1`: Essential for handling various datasets, including the one used in this project.
+Ensure a smooth operation of the Conversation Generator with the following dependencies:
+- `transformers==4.36.2`
+- `datasets==2.10.1`
 
 ## Getting Started
-To begin fine-tuning the models, follow these steps:
 1. **Clone the Repository**: Clone this repository to your local machine or development environment.
 2. **Install Dependencies**: Run `pip install -r requirements.txt` to install the necessary libraries.
-3. **Set Up Your Huggingface Credentials**: For seamless integration and access to models, configure your Huggingface credentials.
-4. **Run Training Script**: Execute the `train.py` script to start the training process. The script utilizes the Adam optimizer for effective training.
+3. **Set Up Your Huggingface Credentials**: Configure your Huggingface credentials for seamless integration and access to models.
+4. **Run Training Script**: Execute `train.py` to start the Adam-optimized training process.
 
 ## Dataset
-The training utilizes the [Kaggle Dialogue Dataset](https://www.kaggle.com/datasets/sukalp1899/dialog-summarization), a comprehensive collection of dialogues ideal for fine-tuning conversational models.
+Training uses the [Kaggle Dialogue Dataset](https://www.kaggle.com/datasets/sukalp1899/dialog-summarization), ideal for conversational model tuning.
 
 ## Contributing
-Contributions to improve the Conversation Generator are welcome. Feel free to fork the repository, make changes, and submit a pull request.
+Contributions are welcome. Feel free to fork, modify, and submit a pull request. Open an issue for any suggestions or problems.
 
-For any issues or suggestions, please open an issue in this repository. Your feedback is invaluable in enhancing this tool.
 ## Contact
-
-For queries, feel free to contact the maintainer at 
-
-📧 Email: omaratef3221@gmail.com
-
-🐦 Twitter: @OmarAtef3221
+📧 Email: [omaratef3221@gmail.com](mailto:omaratef3221@gmail.com)
+🐦 Twitter: [@OmarAtef3221](https://twitter.com/OmarAtef3221)
