@@ -31,8 +31,8 @@ Training uses the [Kaggle Dialogue Dataset](https://www.kaggle.com/datasets/suka
 ## Website Interface for Local Testing 💻
 The `website` folder contains a basic web interface for locally testing the model. It includes HTML, CSS, and JavaScript files that create a user-friendly front-end to interact with the model. To set this up:
 
-1. **Navigate to the Website Folder**: `cd website`
-2. **Start the Flask API**: Ensure the `python_api.py` file in the parent directory is running. This file contains the Flask API needed to handle requests from the website.
+1.**Start the Flask API**: Ensure the `python_api.py` file in the parent directory is running. This file contains the Flask API needed to handle requests from the website.
+2. **Navigate to the Website Folder**: `cd website`
 3. **Open `home.html`**: Open the HTML file in a web browser to access the interface.
 4. **Interact with the Model**: Use the interface to send requests to the Flask API, which in turn communicates with the Conversation Generator model.
 
