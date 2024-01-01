@@ -16,14 +16,13 @@ Check out the fine-tuned versions for dialogue generation and try them out on �
 
 ## Installation Requirements 🛠️
 Ensure a smooth operation of the Conversation Generator with the following dependencies:
-- `transformers==4.36.2`
-- `datasets==2.10.1`
+- `pip install transformers==4.36.2`
+- `pip install datasets==2.10.1`
 
 ## Getting Started 🔍
 1. **Clone the Repository**: Clone this repository to your local machine or development environment.
-2. **Install Dependencies**: Run `pip install -r requirements.txt` to install the necessary libraries.
-3. **Set Up Your Huggingface Credentials**: Configure your Huggingface credentials for seamless integration and access to models.
-4. **Run Training Script**: Execute `train.py` to start the Adam-optimized training process.
+2. **Set Up Your Huggingface Credentials**: Configure your Huggingface credentials for seamless integration and access to models.
+3. **Run Training Script**: Execute `train.py` to start the Adam-optimized training process.
 
 ## Dataset 📚
 Training uses the [Kaggle Dialogue Dataset](https://www.kaggle.com/datasets/sukalp1899/dialog-summarization), ideal for conversational model tuning.
