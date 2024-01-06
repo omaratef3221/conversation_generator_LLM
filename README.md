@@ -12,6 +12,28 @@ Check out the fine-tuned versions for dialogue generation and try them out on �
 - 🌐 [Omaratef3221/flan-t5-base-dialogue-generator](https://huggingface.co/Omaratef3221/flan-t5-base-dialogue-generator)
 
 ## Complete Example
+## Complete Example
+
+Here's a complete example showing how to use the Conversation Generator for generating dialogues:
+
+```python
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+model_name = "Omaratef3221/flan-t5-base-dialogue-generator"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+
+prompt = '''
+Generate a dialogue between two people about the following topic:
+A local street market bustles with activity, #Person1# tries exotic food for the first time, and #Person2#, familiar with the cuisine, offers insights and recommendations.
+Dialogue:
+'''
+
+# Generate a response to an input statement
+input_ids = tokenizer(prompt, return_tensors='pt').input_ids
+output = model.generate(input_ids, top_p=0.6, do_sample=True, temperature=1.2, max_length=512)
+print(tokenizer.decode(output[0], skip_special_tokens=True).replace('#Person2#:', '\n#Person2#:').replace('#Person1#:', '\n#Person1#:'))
+
 
 
 ## Installation Requirements 🛠️
