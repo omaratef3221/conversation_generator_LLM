@@ -6,12 +6,9 @@ The Conversation Generator is a specialized tool designed for generating realist
 ## Supported Models 🚀
 This tool supports and has been tested with the following original models:
 - 🌐 [google/flan-t5-base](https://huggingface.co/google/flan-t5-base) - An advanced T5 model by Google, known for its effectiveness in generating human-like text.
-- 🌐 [bigscience/bloom-560m](https://huggingface.co/bigscience/bloom-560m) - A robust model from BigScience, offering a balance between size and performance.
-- 🌐 [microsoft/phi-2](https://huggingface.co/microsoft/phi-2) - Microsoft's PHI-2 model, renowned for its language understanding and generation capabilities.
 
 ### Fine-Tuned Models 🎯
 Check out the fine-tuned versions for dialogue generation and try them out on 🤗:
-- 🌐 [Omaratef3221/phi2-dialogue-generator](https://huggingface.co/Omaratef3221/phi2-dialogue-generator)
 - 🌐 [Omaratef3221/flan-t5-base-dialogue-generator](https://huggingface.co/Omaratef3221/flan-t5-base-dialogue-generator)
 
 ## Installation Requirements 🛠️
