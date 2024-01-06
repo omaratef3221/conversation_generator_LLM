@@ -33,7 +33,7 @@ Dialogue:
 input_ids = tokenizer(prompt, return_tensors='pt').input_ids
 output = model.generate(input_ids, top_p=0.6, do_sample=True, temperature=1.2, max_length=512)
 print(tokenizer.decode(output[0], skip_special_tokens=True).replace('#Person2#:', '\n#Person2#:').replace('#Person1#:', '\n#Person1#:'))
-
+```
 
 
 ## Installation Requirements 🛠️
