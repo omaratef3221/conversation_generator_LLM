@@ -12,7 +12,6 @@ Check out the fine-tuned versions for dialogue generation and try them out on �
 - 🌐 [Omaratef3221/flan-t5-base-dialogue-generator](https://huggingface.co/Omaratef3221/flan-t5-base-dialogue-generator)
 
 ## Complete Example
-## Complete Example
 
 Here's a complete example showing how to use the Conversation Generator for generating dialogues:
 
@@ -34,7 +33,32 @@ input_ids = tokenizer(prompt, return_tensors='pt').input_ids
 output = model.generate(input_ids, top_p=0.6, do_sample=True, temperature=1.2, max_length=512)
 print(tokenizer.decode(output[0], skip_special_tokens=True).replace('#Person2#:', '\n#Person2#:').replace('#Person1#:', '\n#Person1#:'))
 ```
-
+### output:
+```python
+#Person1#: Oh, that's a nice street market. I'm glad I got to see it. 
+#Person2#: Yes, it is. I like the food here. 
+#Person1#: And the prices are reasonable. 
+#Person2#: I have been to this street market before, and I like it very much. 
+#Person1#: I'm impressed. I really like it. 
+#Person2#: I'm familiar with the cuisine. It is one of the best in the world. 
+#Person1#: What kind of food do you like? 
+#Person2#: I like Italian food, but I like Thai food. 
+#Person1#: Oh, that's really exciting. I like it very much. I think I'll take it. 
+#Person2#: I like Thai food too. 
+#Person1#: What's your favorite food? 
+#Person2#: I'm familiar with Thai food. I love spicy food, but I don't like spicy food. 
+#Person1#: Is that true? 
+#Person2#: Yes, that's right. 
+#Person1#: I like spicy food too. How about Thai food? 
+#Person2#: That's a great idea. I think it's really good. 
+#Person1#: Oh, that's a good idea. What's your favorite restaurant? 
+#Person2#: Oh, I'm sure I can recommend it. 
+#Person1#: I like Thai food, too. What do you recommend? 
+#Person2#: It's a very popular restaurant in China. 
+#Person1#: Oh, that's great. 
+#Person2#: I would like to try it. 
+#Person1#: Thanks. I'll try it.
+```
 
 ## Installation Requirements 🛠️
 Ensure a smooth operation of the Conversation Generator with the following dependencies:
